@@ -11,7 +11,8 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="bs3 btn-group" appDropdown>
-            <button type="button" class="bs3 btn btn-primary dropdown-toggle">Manage Recipe <span class="bs3 caret"></span></button>
+            <button type="button" class="bs3 btn btn-primary dropdown-toggle">Manage Recipe <span
+          class="bs3 caret"></span></button>
             <ul class="bs3 dropdown-menu">
                 <li><a href="#">To Shopping List</a></li>
                 <li><a href="#">Edit Recipe</a></li>
@@ -28,6 +29,10 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-        Ingredients
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
+                {{ ingredient.name}} - {{ ingredient.amount}}
+            </li>
+        </ul>
     </div>
 </div>
