@@ -1,3 +1,4 @@
+import { ShoppingListService } from './../shopping-list/shopping-list.service';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
 import { Recipe } from './recipe.model';
@@ -5,9 +6,11 @@ import { Recipe } from './recipe.model';
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class RecipeService {
 
-  constructor() { }
+
 
 
   recipeSelected = new EventEmitter<Recipe>();
@@ -24,15 +27,22 @@ export class RecipeService {
       ]),
     new Recipe(
       'Roastbeef',
-       'An exclusive dish og meat for rich people',
-        'https://cdn.pixabay.com/photo/2013/02/21/19/06/beef-84534_960_720.jpg',
-         [
-           new Ingredient('Salad',1),
-           new Ingredient('Roastbeef',1)
-         ])
+      'An exclusive dish og meat for rich people',
+      'https://cdn.pixabay.com/photo/2013/02/21/19/06/beef-84534_960_720.jpg',
+      [
+        new Ingredient('Salad', 1),
+        new Ingredient('Roastbeef', 1)
+      ])
   ];
+
+
+  constructor(private slService: ShoppingListService) { }
 
   getRecipes() {
     return this.recipes.slice();
+  }
+
+  addIngredientsToShoppingList(ingredients: Ingredient[]) {
+    this.slService.addIngredients(ingredients);
   }
 }
